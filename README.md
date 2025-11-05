@@ -28,8 +28,13 @@ All three modules share a **common login system** and a **centralized MySQL data
 
 ---
 ##  Preview:
+# Lost and Found:
 ![t1](./screenshots/1.png)
+
+# Equipment Tracker:
 ![t2](./screenshots/2.png)
+
+# Complaint Management:
 ![t3](./screenshots/3.png)
 ---
 
@@ -115,7 +120,7 @@ uvicorn app:main --reload
 
 ## Directory tree:
 ```bash
-campus-dashboard/2024300102
+lost_found
 ├── backend/
 │   ├── __init__.py
 │   ├── crud.py
