@@ -71,9 +71,9 @@ INSERT INTO STUDENTS (Student_ID, Name, Department, Year, Contact, Email) VALUES
 
 -- Insert Sample Faculty
 INSERT INTO FACULTY (Faculty_ID, Name, Department, Designation, Contact, Email) VALUES
-(2001, 'NAB Sir', 'Computer Science', 'Professor', '9876543220', 'anjali@campus.edu'),
-(2002, 'Prof. Anand Godbole', 'Electronics', 'Associate Professor', '9876543221', 'rajesh@campus.edu'),
-(2003, 'Prof. Pramod Bide', 'Mechanical', 'Assistant Professor', '9876543222', 'sunita@campus.edu');
+(2001, 'NAB Sir', 'Computer Science', 'Professor', '9876543220', 'nab@campus.edu'),
+(2002, 'Prof. Anand Godbole', 'Electronics', 'Associate Professor', '9876543221', 'anandgodbole@campus.edu'),
+(2003, 'Prof. Pramod Bide', 'Mechanical', 'Assistant Professor', '9876543222', 'pramodbide@campus.edu');
 
 -- Show what we created
 SHOW TABLES;
