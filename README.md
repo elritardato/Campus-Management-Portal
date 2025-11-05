@@ -34,7 +34,7 @@ All three modules share a **common login system** and a **centralized MySQL data
 |------------|-------------|
 | **Backend** | [FastAPI](https://fastapi.tiangolo.com/) |
 | **Database** | MySQL with SQLAlchemy ORM |
-| **Frontend** | HTML, CSS, JavaScript |
+| **Frontend** | Streamlit |
 | **Authentication** | JWT-based login system |
 | **Server** | Uvicorn |
 
