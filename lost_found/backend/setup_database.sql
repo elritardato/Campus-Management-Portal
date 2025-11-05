@@ -63,11 +63,11 @@ CREATE TABLE verification (
 
 -- Insert Sample Students
 INSERT INTO STUDENTS (Student_ID, Name, Department, Year, Contact, Email) VALUES
-(1001, 'Raj Kale', 'Computer Science', 3, '9876543210', 'rahul@campus.edu'),
-(1002, 'Abhimanyu Kadhane', 'Electronics', 2, '9876543211', 'priya@campus.edu'),
-(1003, 'Vandan Jethwa', 'Mechanical', 4, '9876543212', 'amit@campus.edu'),
-(1004, 'Yukino Yukinoshita', 'Information Technology', 2, '9876543213', 'sneha@campus.edu'),
-(1005, 'Furina', 'Civil', 3, '9876543214', 'arjun@campus.edu');
+(1001, 'Raj Kale', 'Computer Science', 3, '9876543210', 'raj@campus.edu'),
+(1002, 'Abhimanyu Kadhane', 'Electronics', 2, '9876543211', 'abhimanyu@campus.edu'),
+(1003, 'Vandan Jethwa', 'Mechanical', 4, '9876543212', 'vandan@campus.edu'),
+(1004, 'Yukino Yukinoshita', 'Information Technology', 2, '9876543213', 'yukinon@campus.edu'),
+(1005, 'Furina', 'Civil', 3, '9876543214', 'furina@campus.edu');
 
 -- Insert Sample Faculty
 INSERT INTO FACULTY (Faculty_ID, Name, Department, Designation, Contact, Email) VALUES
