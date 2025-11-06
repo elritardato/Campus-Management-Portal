@@ -120,23 +120,41 @@ uvicorn app:main --reload
 
 ## Directory tree:
 ```bash
-lost_found
-├── backend/
-│   ├── __init__.py
-│   ├── crud.py
-│   ├── database.py
-│   ├── main.py
-│   ├── models.py
-│   ├── schemas.py
-│   ├── requirements.txt
-│   └── setup_database.sql
-├── frontend/
-│   ├── app.py
-│   └── requirements.txt
-├── .env.example
-├── .gitignore
-└── README.md
+campus_management_system/
+│
+├── README.md                       
+├── .env.example                       
+├── .gitignore                         
+│
+├── lost_found/                      
+│   ├── backend/
+│   │   ├── __init__.py
+│   │   ├── main.py
+│   │   ├── models.py
+│   │   ├── database.py
+│   │   ├── schemas.py
+│   │   ├── crud.py
+│   │   ├── setup_database.sql
+│   │   └── requirements.txt
+│   │
+│   └── frontend/
+│       ├── app.py
+│       └── requirements.txt
+│
+└── equipment_tracker/                 
+    ├── backend/
+    │   ├── main.py
+    │   ├── models.py
+    │   ├── database.py
+    │   ├── sample_data.py
+    │   ├── requirements.txt
+    │   └── equipment_tracker.db
+    │
+    └── frontend/
+        ├── streamlit_app.py
+        └── requirements.txt        
 ```
+
 
 A website should open up in your browser. You can monitor the database using MariaDB or MySQL home server, depending on your system.
 
