@@ -120,38 +120,39 @@ uvicorn app:main --reload
 
 ## Directory tree:
 ```bash
-lost_found
-├── backend/
-│   ├── __init__.py
-│   ├── crud.py
-│   ├── database.py
-│   ├── main.py
-│   ├── models.py
-│   ├── schemas.py
-│   ├── requirements.txt
-│   └── setup_database.sql
-├── frontend/
-│   ├── app.py
-│   └── requirements.txt
-├── .env.example
-├── .gitignore
-└── README.md
-
-equipment_tracker/
+campus_management_system/
 │
 ├── README.md                       
+├── .env.example                       
+├── .gitignore                         
 │
-├── backend/                        
-│   ├── main.py                       
-│   ├── models.py                    
-│   ├── database.py                
-│   ├── sample_data.py          
-│   ├── requirements.txt              
-│   └── equipment_tracker.db          
+├── lost_found/                      
+│   ├── backend/
+│   │   ├── __init__.py
+│   │   ├── main.py
+│   │   ├── models.py
+│   │   ├── database.py
+│   │   ├── schemas.py
+│   │   ├── crud.py
+│   │   ├── setup_database.sql
+│   │   └── requirements.txt
+│   │
+│   └── frontend/
+│       ├── app.py
+│       └── requirements.txt
 │
-└── frontend/                    
-    ├── streamlit_app.py            
-    └── requirements.txt           
+└── equipment_tracker/                 
+    ├── backend/
+    │   ├── main.py
+    │   ├── models.py
+    │   ├── database.py
+    │   ├── sample_data.py
+    │   ├── requirements.txt
+    │   └── equipment_tracker.db
+    │
+    └── frontend/
+        ├── streamlit_app.py
+        └── requirements.txt        
 ```
 
 
