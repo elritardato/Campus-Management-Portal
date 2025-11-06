@@ -136,7 +136,24 @@ lost_found
 ├── .env.example
 ├── .gitignore
 └── README.md
+
+equipment_tracker/
+│
+├── README.md                       
+│
+├── backend/                        
+│   ├── main.py                       
+│   ├── models.py                    
+│   ├── database.py                
+│   ├── sample_data.py          
+│   ├── requirements.txt              
+│   └── equipment_tracker.db          
+│
+└── frontend/                    
+    ├── streamlit_app.py            
+    └── requirements.txt           
 ```
+
 
 A website should open up in your browser. You can monitor the database using MariaDB or MySQL home server, depending on your system.
 
