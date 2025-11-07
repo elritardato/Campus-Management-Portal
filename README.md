@@ -67,7 +67,7 @@ The system uses a shared `users` table and separate tables for each module.
 - `complaints(complaint_id, user_id, title, description, category, date_filed, status)`
 - `admin_actions(action_id, complaint_id, admin_id, notes, date_action)`
 
----
+----
 
 
 ## ⚙️ Setup Instructions
