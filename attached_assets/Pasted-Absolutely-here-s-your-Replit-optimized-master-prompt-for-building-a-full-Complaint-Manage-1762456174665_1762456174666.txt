@@ -1,0 +1,293 @@
+Absolutely ✅ — here’s your **Replit-optimized master prompt** for building a full **Complaint Management System** using **FastAPI + Streamlit + MySQL**, on **Python 3.11.9**.
+
+This version is designed to:
+
+* Work cleanly inside Replit’s free plan
+* Use **MySQL (remote, via Planetscale/Railway)**
+* Keep **SQLite** as fallback (for local testing)
+* Minimize compute usage and simplify `.env` config
+* Auto-create DB tables and insert dummy data
+
+---
+
+# 🧠 MASTER PROMPT (for Claude / ChatGPT / any full-stack-capable model)
+
+You are an expert full-stack developer.
+Generate a **complete, runnable Complaint Management System** optimized for **Replit Free Plan** using **Python 3.11.9**, **FastAPI**, **SQLAlchemy 2.x**, **Streamlit**, and **MySQL** (with SQLite fallback).
+
+---
+
+## ⚙️ Environment
+
+| Component          | Version / Tool                         |
+| ------------------ | -------------------------------------- |
+| **Python**         | 3.11.9                                 |
+| **Backend**        | FastAPI + SQLAlchemy 2.x + Pydantic v2 |
+| **Frontend**       | Streamlit (simple admin/user UI)       |
+| **DB**             | MySQL (primary), SQLite (fallback)     |
+| **ORM driver**     | PyMySQL                                |
+| **Env management** | `.env` file or Replit Secrets          |
+| **Runtime**        | Replit Free Plan (no Always-On)        |
+
+---
+
+## 🧩 Database Schema
+
+Use schema from the uploaded **Complaint_Management_Schema_Documentation.pdf** 
+
+Tables:
+
+* `users`
+* `complaint_categories`
+* `complaints`
+* `complaint_status_history`
+* `complaint_comments`
+* `complaint_attachments`
+
+Include:
+
+* Foreign keys with `ON DELETE CASCADE`
+* `created_at`, `updated_at` timestamps
+* `assigned_to`, `remark`, and status tracking columns
+
+---
+
+## 🏗️ Project Structure
+
+```
+complaint-system/
+├─ backend/
+│  ├─ app/
+│  │  ├─ main.py
+│  │  ├─ database.py
+│  │  ├─ models.py
+│  │  ├─ schemas.py
+│  │  ├─ crud.py
+│  │  └─ routers/
+│  │     ├─ users.py
+│  │     ├─ categories.py
+│  │     └─ complaints.py
+│  ├─ requirements.txt
+│  └─ .env.example
+├─ frontend/
+│  ├─ streamlit_app.py
+│  └─ requirements.txt
+├─ db_init/
+│  ├─ create_tables.sql
+│  └─ seed_dummy_data.sql
+├─ setup_venv.sh
+└─ README.md
+```
+
+---
+
+## 🧮 Database Config (MySQL + SQLite fallback)
+
+**.env.example**
+
+```bash
+# Replit secrets (configure these under "Secrets" tab)
+DATABASE_URL="mysql+pymysql://username:password@hostname:3306/complaint_db"
+# For local dev:
+# DATABASE_URL="sqlite:///./db.sqlite3"
+```
+
+**backend/app/database.py**
+
+```python
+import os
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker, declarative_base
+from dotenv import load_dotenv
+
+load_dotenv()
+DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./db.sqlite3")
+
+engine = create_engine(DATABASE_URL, pool_pre_ping=True)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+Base = declarative_base()
+
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
+```
+
+---
+
+## 🧰 Backend Requirements
+
+**backend/requirements.txt**
+
+```
+fastapi
+uvicorn
+sqlalchemy>=2.0
+pymysql
+pydantic>=2.0
+python-dotenv
+```
+
+---
+
+## 🖥️ Frontend Requirements
+
+**frontend/requirements.txt**
+
+```
+streamlit
+requests
+python-dotenv
+```
+
+---
+
+## 🧑‍💻 Backend Behavior
+
+* Routes under `/api/v1/`
+* CRUD endpoints for:
+
+  * Users
+  * Complaint Categories
+  * Complaints
+  * Comments
+  * Status Updates
+  * Attachments (metadata)
+* Auto-create all tables on first launch (`Base.metadata.create_all`)
+* Include seed-data endpoint or auto-run seeding script
+* Include `/` health-check returning `{status:"ok"}`
+
+---
+
+## 🧑‍🎨 Frontend (Streamlit)
+
+`frontend/streamlit_app.py` should:
+
+* Let users sign in via dropdown (dummy emails)
+* Create new complaints
+* View and filter complaints by category/status
+* Add comments / change status (calls backend REST)
+* Use `requests` to call `http://localhost:8000/api/v1/...`
+* Simple responsive UI using Streamlit widgets
+
+---
+
+## ⚡ Run Instructions (Replit Friendly)
+
+**setup_venv.sh**
+
+```bash
+python3.11 -m venv .venv
+source .venv/bin/activate
+pip install -r backend/requirements.txt
+pip install -r frontend/requirements.txt
+```
+
+**README.md**
+
+```bash
+# 1️⃣ Create and activate venv
+bash setup_venv.sh
+
+# 2️⃣ Configure DATABASE_URL in Replit Secrets (or .env)
+
+# 3️⃣ Initialize DB
+python backend/app/main.py --init-db   # optional
+
+# 4️⃣ Run backend
+uvicorn backend.app.main:app --host 0.0.0.0 --port 8000 --reload
+
+# 5️⃣ Run frontend (open in new Replit tab)
+streamlit run frontend/streamlit_app.py --server.port 8501
+```
+
+---
+
+## 🧱 Database SQL
+
+**db_init/create_tables.sql**
+
+```sql
+-- MySQL schema for Complaint Management System :contentReference[oaicite:1]{index=1}
+CREATE TABLE users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  full_name VARCHAR(255) NOT NULL,
+  email VARCHAR(255) UNIQUE NOT NULL,
+  role VARCHAR(50) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE complaint_categories (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(100) NOT NULL,
+  description TEXT
+);
+
+CREATE TABLE complaints (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT NOT NULL,
+  category_id INT NOT NULL,
+  title VARCHAR(255) NOT NULL,
+  description TEXT,
+  status VARCHAR(50) DEFAULT 'open',
+  assigned_to INT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+  FOREIGN KEY (category_id) REFERENCES complaint_categories(id) ON DELETE CASCADE,
+  FOREIGN KEY (assigned_to) REFERENCES users(id) ON DELETE SET NULL
+);
+```
+
+**db_init/seed_dummy_data.sql**
+(Insert dummy users, categories, and complaints — same as earlier version.)
+
+---
+
+## 🧪 Testing (cURL)
+
+```bash
+# Create a user
+curl -X POST http://localhost:8000/api/v1/users \
+  -H "Content-Type: application/json" \
+  -d '{"full_name":"Alice Admin","email":"alice.admin@example.com","role":"admin"}'
+
+# Create a complaint
+curl -X POST http://localhost:8000/api/v1/complaints \
+  -H "Content-Type: application/json" \
+  -d '{"user_id":1,"category_id":1,"title":"WiFi down","description":"No internet"}'
+
+# List complaints
+curl http://localhost:8000/api/v1/complaints
+```
+
+---
+
+## 🔋 Replit Optimization Notes
+
+* Use **external MySQL** (Planetscale/Railway) to avoid data loss.
+* Add `DATABASE_URL` to Replit **Secrets**, not `.env` file.
+* Use **SQLite** only for quick testing.
+* Run backend and frontend manually — don’t keep repl “Always On.”
+* Keep processes short; Replit free credits ≈ 500 runtime minutes / month.
+
+---
+
+## ✅ Deliverables
+
+Claude / ChatGPT should output:
+
+1. Complete code for backend + frontend + SQL files + README
+2. MySQL-compatible connection setup
+3. Dummy seed data and working REST endpoints
+4. Streamlit UI that calls the API
+
+---
+
+### 💬 End of Prompt
+
+---
+
+Would you like me to **embed example code blocks** (like `main.py`, `models.py`, and `streamlit_app.py`) into this Replit-MySQL prompt, so you can copy-paste it straight into Claude to build the full project repo?

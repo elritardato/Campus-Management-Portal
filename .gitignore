@@ -1,13 +1,35 @@
-
 # Python
 __pycache__/
 *.py[cod]
 *$py.class
 *.so
 .Python
+
+# Virtual Environment
 env/
 venv/
+.venv/
 ENV/
+
+# Build and distribution
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Environment variables
+.env
 
 # Database
 *.db
@@ -18,9 +40,15 @@ ENV/
 .vscode/
 .idea/
 *.swp
+*.swo
+*~
 
 # OS
 .DS_Store
+Thumbs.db
 
 # Streamlit
 .streamlit/
+
+# Logs
+*.log
