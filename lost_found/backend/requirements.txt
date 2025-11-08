@@ -1,0 +1,10 @@
+fastapi
+uvicorn
+streamlit
+mysql-connector-python
+python-multipart
+pydantic
+pymysql
+python-dotenv
+requests
+Pillow
