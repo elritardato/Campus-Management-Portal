@@ -1,10 +1,10 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from backend.app.database import engine, Base
-from backend.app.routers import users, categories, complaints
-from backend.app import models, crud, schemas
-from backend.app.database import SessionLocal
+from app.database import engine, Base, SessionLocal
+from app import models, crud, schemas
+from app.routers import users, categories, complaints
 import sys
+
 
 app = FastAPI(title="Complaint Management System", version="1.0.0")
 
@@ -16,6 +16,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Routers
 app.include_router(users.router)
 app.include_router(categories.router)
 app.include_router(complaints.router)

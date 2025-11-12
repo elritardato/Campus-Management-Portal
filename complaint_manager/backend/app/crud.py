@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 from sqlalchemy import and_
 from typing import List, Optional
-from backend.app import models, schemas
+from . import models, schemas
 
 def create_user(db: Session, user: schemas.UserCreate):
     db_user = models.User(**user.model_dump())
